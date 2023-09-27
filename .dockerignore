@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+dist
+e2e
+.idea
+.vscode
+*.log
+*.swp
+.git
