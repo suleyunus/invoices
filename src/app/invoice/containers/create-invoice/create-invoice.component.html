@@ -1,0 +1,343 @@
+<div class="bg-gray-50">
+  <main class="mx-auto max-w-7xl px-4 pb-24 pt-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:max-w-none">
+      <h1 class="text-3xl font-bold text-gray-800 sm:text-4xl mb-4">
+        Generate Invoice
+      </h1>
+
+      <form
+        class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16"
+        [formGroup]="generateInvoiceForm"
+        (ngSubmit)="submitInvoice()"
+        errorTailor
+      >
+        <div>
+          <div>
+            <h2 class="text-lg font-medium text-gray-900">
+              Invoice Information
+            </h2>
+
+            <div class="mt-4">
+              <label
+                for="invoiceNumber"
+                class="block text-sm font-medium text-gray-700"
+                >Invoice number</label
+              >
+              <div class="mt-1">
+                <input
+                  type="text"
+                  id="invoiceNumber"
+                  name="invoiceNumber"
+                  formControlName="invoiceNumber"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label
+                for="invoiceDate"
+                class="block text-sm font-medium text-gray-700"
+                >Invoice date</label
+              >
+              <div class="mt-1">
+                <input
+                  type="date"
+                  value="2018-07-22"
+                  min="2018-01-01"
+                  id="invoiceDate"
+                  name="invoiceDate"
+                  formControlName="invoiceDate"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label
+                for="invoiceDueDate"
+                class="block text-sm font-medium text-gray-700"
+                >Payment due</label
+              >
+              <div class="mt-1">
+                <input
+                  type="date"
+                  value="2018-07-22"
+                  min="2018-01-01"
+                  id="invoiceDueDate"
+                  name="invoiceDueDate"
+                  formControlName="invoiceDueDate"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="mt-10 border-t border-gray-200 pt-10"
+            formGroupName="seller"
+          >
+            <h2 class="text-lg font-medium text-gray-900">Bill from</h2>
+
+            <div class="mt-4">
+              <label
+                for="sellerName"
+                class="block text-sm font-medium text-gray-700"
+                >Name</label
+              >
+              <div class="mt-1">
+                <input
+                  type="text"
+                  id="sellerName"
+                  name="sellerName"
+                  formControlName="sellerName"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label
+                for="sellerAddress"
+                class="block text-sm font-medium text-gray-700"
+                >Address</label
+              >
+              <div class="mt-1">
+                <input
+                  type="text"
+                  id="sellerAddress"
+                  name="sellerAddress"
+                  formControlName="sellerAddress"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label
+                for="sellerPhone"
+                class="block text-sm font-medium text-gray-700"
+                >Phone number</label
+              >
+              <div class="mt-1">
+                <input
+                  type="tel"
+                  id="sellerPhone"
+                  name="sellerPhone"
+                  formControlName="sellerPhone"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label
+                for="sellerEmail"
+                class="block text-sm font-medium text-gray-700"
+                >Email address</label
+              >
+              <div class="mt-1">
+                <input
+                  type="email"
+                  id="sellerEmail"
+                  name="sellerEmail"
+                  autocomplete="email"
+                  formControlName="sellerEmail"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="mt-10 border-t border-gray-200 pt-10"
+            formGroupName="buyer"
+          >
+            <h2 class="text-lg font-medium text-gray-900">Bill to</h2>
+
+            <div class="mt-4">
+              <label
+                for="buyerName"
+                class="block text-sm font-medium text-gray-700"
+                >Name</label
+              >
+              <div class="mt-1">
+                <input
+                  type="text"
+                  id="buyerName"
+                  name="buyerName"
+                  formControlName="buyerName"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label
+                for="buyerAddress"
+                class="block text-sm font-medium text-gray-700"
+                >Address</label
+              >
+              <div class="mt-1">
+                <input
+                  type="text"
+                  id="buyerAddress"
+                  name="buyerAddress"
+                  formControlName="buyerAddress"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label
+                for="buyerPhone"
+                class="block text-sm font-medium text-gray-700"
+                >Phone number</label
+              >
+              <div class="mt-1">
+                <input
+                  type="tel"
+                  id="buyerPhone"
+                  name="buyerPhone"
+                  formControlName="buyerPhone"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label
+                for="buyerEmail"
+                class="block text-sm font-medium text-gray-700"
+                >Email address</label
+              >
+              <div class="mt-1">
+                <input
+                  type="email"
+                  id="buyerEmail"
+                  name="buyerEmail"
+                  formControlName="buyerEmail"
+                  class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order summary -->
+        <div class="mt-10 lg:mt-0">
+          <h2 class="text-lg font-medium text-gray-900">Order summary</h2>
+
+          <div
+            class="mt-4 rounded-lg border border-gray-200 bg-white shadow-sm"
+          >
+            <h3 class="sr-only">Items</h3>
+
+            <div formArrayName="items" class="mt-4">
+              <div
+                *ngFor="let item of items.controls; let i = index"
+                [formGroupName]="i"
+                class="mx-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6"
+              >
+                <div class="sm:col-span-2">
+                  <label
+                    for="item"
+                    class="block text-sm font-medium text-gray-700"
+                    >Item</label
+                  >
+                  <div class="mt-1">
+                    <input
+                      type="text"
+                      id="item"
+                      name="item"
+                      formControlName="item"
+                      class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                </div>
+
+                <div class="sm:col-span-1">
+                  <label
+                    for="quantity"
+                    class="block text-sm font-medium text-gray-700"
+                    >Quantity</label
+                  >
+                  <div class="mt-1">
+                    <input
+                      type="number"
+                      id="quantity"
+                      name="quantity"
+                      formControlName="quantity"
+                      class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                </div>
+
+                <div class="sm:col-span-1">
+                  <label
+                    for="unitPrice"
+                    class="block text-sm font-medium text-gray-700"
+                    >Unit Price</label
+                  >
+                  <div class="mt-1">
+                    <input
+                      type="number"
+                      id="unitPrice"
+                      name="unitPrice"
+                      formControlName="unitPrice"
+                      class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                </div>
+                <div class="sm:col-span-1">
+                  <label
+                    for="amount"
+                    class="block text-sm font-medium text-gray-700"
+                    >Amount</label
+                  >
+                  <div class="mt-1">
+                    <input
+                      type="number"
+                      id="amount"
+                      name="amount"
+                      formControlName="amount"
+                      class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                </div>
+
+                <div class="sm:col-span-1 flex items-end">
+                  <button
+                    type="button"
+                    (click)="removeItem(i)"
+                    class="text-red-600 hover:text-red-800"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                (click)="addItem()"
+                class="mx-6 my-4 mr-auto px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                Add Item
+              </button>
+            </div>
+
+            <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
+              <button
+                type="submit"
+                class="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+              >
+                Generate Invoice
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+</div>
