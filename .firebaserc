@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "invoices-992ca": {
+      "hosting": {
+        "invoices-app": [
+          "invoices-992ca"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "invoices-992ca"
+  }
+}
