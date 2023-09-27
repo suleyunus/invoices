@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { InvoiceModule } from './invoice/invoice.module';
+import { CommonModule } from '@angular/common';
+import { InvoiceComponent } from './containers/invoice/invoice.component';
+import { CreateInvoiceComponent } from './containers/create-invoice/create-invoice.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import {
   errorTailorImports,
   provideErrorTailorConfig,
 } from '@ngneat/error-tailor';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, InvoiceModule],
+  declarations: [InvoiceComponent, CreateInvoiceComponent],
+  imports: [CommonModule, ReactiveFormsModule],
+  exports: [InvoiceComponent, CreateInvoiceComponent],
   providers: [
     provideErrorTailorConfig({
       errors: {
@@ -34,6 +34,5 @@ import {
       controlErrorsClass: ['text-red-600', 'dark:text-red-400'],
     }),
   ],
-  bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class InvoiceModule {}
