@@ -1,27 +1,51 @@
-# InvoicesApp
+<a name="readme-top"></a>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.3.
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <h3 align="center">Invoices</h3>
+</div>
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#getting-started">Deploying to an Ubuntu Server using Docker</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+  </ol>
+</details>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+<!-- GETTING STARTED -->
+## Getting Started
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+The instructions here are for getting the project setup locally. To view instructions on how to fetch and deploy the docker image, visit [Dockerhub](https://hub.docker.com/repository/docker/suleyunus/invoices/general)
 
-## Running unit tests
+### Prerequisites
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* Node
+* Angular CLI
 
-## Running end-to-end tests
+### Installation
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+1. Clone the repo
+   ```sh
+   git clone https://github.com/suleyunus/invoices.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Run the app
+   ```sh
+   ng serve -o
+   ```
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
