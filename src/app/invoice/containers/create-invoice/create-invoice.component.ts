@@ -25,7 +25,7 @@ export function dateComparisonValidator(
 @Component({
   selector: 'app-create-invoice',
   templateUrl: './create-invoice.component.html',
-  styleUrls: ['./create-invoice.component.css'],
+  styles: [],
 })
 export class CreateInvoiceComponent {
   constructor(

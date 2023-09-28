@@ -11,7 +11,7 @@ import htmlToPdfmake from 'html-to-pdfmake';
 @Component({
   selector: 'app-invoice',
   templateUrl: './invoice.component.html',
-  styleUrls: ['./invoice.component.css'],
+  styles: [],
 })
 export class InvoiceComponent implements OnInit {
   invoice: Invoice | undefined;
@@ -47,7 +47,7 @@ export class InvoiceComponent implements OnInit {
   generatePDF(): void {
     const htmlContent = this.extractHTMLContent();
     const val = htmlToPdfmake(htmlContent);
-    var documentDefinition = { content: val };
+    const documentDefinition = { content: val };
 
     pdfMake.createPdf(documentDefinition).open();
   }
