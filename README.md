@@ -26,7 +26,7 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-The instructions here are for getting the project setup locally. To view instructions on how to fetch and deploy the docker image, visit [Dockerhub](https://hub.docker.com/repository/docker/suleyunus/invoices/general)
+The instructions here are for getting the project setup locally. If you prefer using a built docker image, visit [Dockerhub](https://hub.docker.com/repository/docker/suleyunus/invoices/general)
 
 ### Prerequisites
 
@@ -47,5 +47,21 @@ The instructions here are for getting the project setup locally. To view instruc
    ```sh
    ng serve -o
    ```
+
+### Docker
+
+The application has Docker support. You may run the Docker build locally on your terminal by following the steps below: 
+
+1. Build the Docker image
+  ```sh
+  docker build -t <your-preferred-app-name> .
+  ```
+2. Test the Docker image locally
+  ```sh
+  docker run -d -p 8080:80 <your-preferred-app-name>
+  ```
+
+With Github Actions however, you only need to set your secrets to DOCKER_USERNAME and DOCKERHUB_TOKEN and you will have an image on every push to the main branch. To deploy to a server, follow the instructions [here](https://hub.docker.com/repository/docker/suleyunus/invoices/general)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
