@@ -8,8 +8,6 @@ import { Observable, of } from 'rxjs';
 export class InvoiceService {
   private invoiceData!: Invoice;
 
-  constructor() {}
-
   addInvoice(invoiceData: Invoice) {
     this.invoiceData = invoiceData;
     this.invoiceData.subTotal = this.calculateSubtotal();
@@ -36,12 +34,12 @@ export class InvoiceService {
     let total = subtotal;
 
     if (this.invoiceData.taxRate) {
-      const taxAmount = subtotal * (this.invoiceData.taxRate / 100);
+      const taxAmount = total * (this.invoiceData.taxRate / 100);
       total += taxAmount;
     }
 
     if (this.invoiceData.discountRate) {
-      const discountAmount = subtotal * (this.invoiceData.discountRate / 100);
+      const discountAmount = total * (this.invoiceData.discountRate / 100);
       total -= discountAmount;
     }
 
