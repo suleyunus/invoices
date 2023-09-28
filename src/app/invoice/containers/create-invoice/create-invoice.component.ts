@@ -5,6 +5,7 @@ import {
   FormBuilder,
   Validators,
   AbstractControl,
+  ValidatorFn,
 } from '@angular/forms';
 import { Invoice } from '../../interfaces/invoice';
 import { Router } from '@angular/router';
@@ -20,6 +21,19 @@ export function dateComparisonValidator(
   }
 
   return null;
+}
+
+export function phoneNumberValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const phoneNumber = control.value;
+    const phoneNumberPattern = /^\+?[0-9]{1,3}-?[0-9]{3,14}$/;
+
+    if (phoneNumber && !phoneNumberPattern.test(phoneNumber)) {
+      return { phoneNumber: true };
+    }
+
+    return null;
+  };
 }
 
 @Component({
@@ -58,13 +72,13 @@ export class CreateInvoiceComponent {
       seller: this.fb.group({
         sellerName: ['', [Validators.required]],
         sellerAddress: ['', Validators.required],
-        sellerPhone: ['', [Validators.required, Validators.minLength(10)]],
+        sellerPhone: ['', [Validators.required, phoneNumberValidator()]],
         sellerEmail: ['', [Validators.required, Validators.email]],
       }),
       buyer: this.fb.group({
         buyerName: ['', [Validators.required]],
         buyerAddress: ['', Validators.required],
-        buyerPhone: ['', [Validators.required, Validators.minLength(10)]],
+        buyerPhone: ['', [Validators.required, phoneNumberValidator()]],
         buyerEmail: ['', [Validators.required, Validators.email]],
       }),
       items: this.fb.array([]),

@@ -18,6 +18,7 @@ import { provideErrorTailorConfig } from '@ngneat/error-tailor';
             minLength: ({ requiredLength, actualLength }) =>
               `Expect ${requiredLength} but got ${actualLength}`,
             email: (error) => `Email not valid`,
+            phoneNumber: (error) => `Provide a valid phone number`,
           };
         },
         deps: [],
