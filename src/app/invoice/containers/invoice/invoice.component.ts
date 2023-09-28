@@ -18,10 +18,7 @@ export class InvoiceComponent implements OnInit {
   subtotal: number | undefined;
   total: number | undefined;
 
-  constructor(
-    private invoiceService: InvoiceService,
-    private http: HttpClient
-  ) {}
+  constructor(private invoiceService: InvoiceService) {}
 
   ngOnInit(): void {
     this.fetchInvoice();
@@ -33,7 +30,7 @@ export class InvoiceComponent implements OnInit {
         this.invoice = invoice;
       },
       error(err) {
-        console.error('Error fetching invoice', err);
+        console.error(err);
       },
     });
   }

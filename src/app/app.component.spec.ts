@@ -7,8 +7,8 @@ describe('AppComponent', () => {
 
   beforeEach(() => (spectator = createComponent()));
 
-  it('should be defined', () => {
-    expect(spectator.query('app-root')).toBeDefined();
+  it('should be created', () => {
+    expect(spectator).toBeDefined();
   });
 
   it('should render CreateInvoiceComponent on first load', () => {
