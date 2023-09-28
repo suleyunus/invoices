@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { InvoiceService } from '../../services/invoice.service';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Invoice } from '../../interfaces/invoice';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-invoice',
@@ -11,7 +12,8 @@ import { Invoice } from '../../interfaces/invoice';
 export class CreateInvoiceComponent {
   constructor(
     private fb: FormBuilder,
-    private invoiceService: InvoiceService
+    private invoiceService: InvoiceService,
+    private router: Router
   ) {}
 
   generateInvoiceForm = this.fb.group({
@@ -31,18 +33,23 @@ export class CreateInvoiceComponent {
       ],
     ],
     seller: this.fb.group({
-      sellerName: ['', Validators.required],
+      sellerName: ['', [Validators.required]],
       sellerAddress: ['', Validators.required],
-      sellerPhone: ['', [Validators.required, Validators.min(10)]],
+      sellerPhone: ['', [Validators.required, Validators.minLength(10)]],
       sellerEmail: ['', [Validators.required, Validators.email]],
     }),
     buyer: this.fb.group({
-      buyerName: ['', Validators.required],
+      buyerName: ['', [Validators.required]],
       buyerAddress: ['', Validators.required],
-      buyerPhone: ['', [Validators.required, Validators.min(10)]],
+      buyerPhone: ['', [Validators.required, Validators.minLength(10)]],
       buyerEmail: ['', [Validators.required, Validators.email]],
     }),
     items: this.fb.array([]),
+    extraCharges: this.fb.group({
+      taxRate: [''],
+      discountRate: [''],
+      fees: [''],
+    }),
   });
 
   get items(): FormArray {
@@ -51,10 +58,9 @@ export class CreateInvoiceComponent {
 
   addItem(): void {
     const itemFormGroup = this.fb.group({
-      item: [''],
-      quantity: [''],
-      unitPrice: [''],
-      amount: [''],
+      item: ['', Validators.required],
+      quantity: ['', [Validators.required, Validators.min(1)]],
+      unitPrice: ['', [Validators.required, Validators.min(1)]],
     });
     this.items.push(itemFormGroup);
   }
@@ -69,8 +75,7 @@ export class CreateInvoiceComponent {
       this.invoiceService.addInvoice(invoiceData);
       this.generateInvoiceForm.reset();
       this.items.clear();
-    } else {
-      this.generateInvoiceForm.markAllAsTouched();
+      this.router.navigate(['/invoice']);
     }
   }
 }

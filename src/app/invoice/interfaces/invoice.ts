@@ -1,18 +1,18 @@
 export interface Invoice {
-  invoice_number: string;
-  invoice_date: string;
-  due_date: string;
+  invoiceNumber: string;
+  invoiceDate: string;
+  invoiceDueDate: string;
   seller: {
-    name: string;
-    address: string;
-    email: string;
-    phone: string;
+    sellerName: string;
+    sellerAddress: string;
+    sellerEmail: string;
+    sellerPhone: string;
   };
   buyer: {
-    name: string;
-    address: string;
-    email: string;
-    phone: string;
+    buyerName: string;
+    buyerAddress: string;
+    buyerEmail: string;
+    buyerPhone: string;
   };
   items: {
     item: string;
@@ -20,4 +20,9 @@ export interface Invoice {
     unitPrice: number;
     amount: number;
   }[];
+  taxRate: number;
+  discountRate: number;
+  fees: number;
+  subTotal: number;
+  total: number;
 }
