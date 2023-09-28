@@ -69,6 +69,11 @@
                   formControlName="invoiceDueDate"
                   class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 />
+                <div *ngIf="generateInvoiceForm.hasError('dateComparison')">
+                  <p class="text-red-600">
+                    Due date must be later than invoice date
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -266,6 +271,7 @@
                   <div class="mt-1">
                     <input
                       type="number"
+                      min="1"
                       id="quantity"
                       name="quantity"
                       formControlName="quantity"
@@ -283,25 +289,10 @@
                   <div class="mt-1">
                     <input
                       type="number"
+                      min="1"
                       id="unitPrice"
                       name="unitPrice"
                       formControlName="unitPrice"
-                      class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    />
-                  </div>
-                </div>
-                <div class="sm:col-span-1">
-                  <label
-                    for="amount"
-                    class="block text-sm font-medium text-gray-700"
-                    >Amount</label
-                  >
-                  <div class="mt-1">
-                    <input
-                      type="number"
-                      id="amount"
-                      name="amount"
-                      formControlName="amount"
                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     />
                   </div>
@@ -311,7 +302,7 @@
                   <button
                     type="button"
                     (click)="removeItem(i)"
-                    class="text-red-600 hover:text-red-800"
+                    class="text-red-600 hover:text-red-800 self-center"
                   >
                     Remove
                   </button>
@@ -328,6 +319,58 @@
             </div>
 
             <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
+              <div class="mb-6" formGroupName="extraCharges">
+                <div class="flex flex-1 items-end justify-between pt-2">
+                  <label
+                    for="taxRate"
+                    class="self-center mr-2 text-sm font-medium text-gray-700"
+                    >Tax Rate</label
+                  >
+                  <input
+                    type="number"
+                    min="1"
+                    max="100"
+                    id="taxRate"
+                    name="taxRate"
+                    formControlName="taxRate"
+                    class="rounded-md w-20 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  />
+                </div>
+
+                <div class="flex flex-1 items-end justify-between pt-2">
+                  <label
+                    for="discountRate"
+                    class="self-center mr-2 text-sm font-medium text-gray-700"
+                    >Discount Rate</label
+                  >
+                  <input
+                    type="number"
+                    min="1"
+                    max="100"
+                    id="discountRate"
+                    name="discountRate"
+                    formControlName="discountRate"
+                    class="rounded-md w-20 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  />
+                </div>
+
+                <div class="flex flex-1 items-end justify-between pt-2">
+                  <label
+                    for="fees"
+                    class="self-center mr-2 text-sm font-medium text-gray-700"
+                    >Fees</label
+                  >
+                  <input
+                    type="number"
+                    min="1"
+                    id="fees"
+                    name="fees"
+                    formControlName="fees"
+                    class="rounded-md w-20 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  />
+                </div>
+              </div>
+
               <button
                 type="submit"
                 class="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
