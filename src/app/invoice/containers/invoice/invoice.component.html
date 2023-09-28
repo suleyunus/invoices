@@ -28,15 +28,13 @@
   <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto my-4 sm:my-10">
     <!-- Grid -->
     <div
-      class="mb-5 pb-5 flex justify-between items-center border-b border-gray-200"
+      class="mb-5 pb-5 flex justify-end items-center border-b border-gray-200"
     >
-      <div>
-        <h2 class="text-4xl font-semibold text-gray-800">Invoice</h2>
-      </div>
       <!-- Col -->
 
       <div class="inline-flex gap-x-2">
-        <a
+        <button
+          (click)="generatePDF()"
           class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm"
           href="#"
         >
@@ -55,58 +53,41 @@
               d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
             />
           </svg>
-          Invoice PDF
-        </a>
-        <a
-          class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm"
-          href="#"
-        >
-          <svg
-            class="w-4 h-4"
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"
-            />
-            <path
-              d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"
-            />
-          </svg>
-          Print
-        </a>
+          Download PDF
+        </button>
       </div>
       <!-- Col -->
     </div>
     <!-- End Grid -->
 
+   <div id="invoice">
+       <div>
+        <h2 class="text-4xl font-semibold text-gray-800 mb-6">Invoice</h2>
+    </div>
     <div class="grid md:grid-cols-2 gap-3 mb-20">
       <div>
         <div class="grid space-y-3">
           <div class="grid sm:flex gap-x-3 text-sm">
             <p class="min-w-[150px] max-w-[200px] text-gray-500">
-              {{ invoice?.seller?.sellerName }}
+              {{ invoice.seller.sellerName }}
             </p>
           </div>
 
           <div class="grid sm:flex gap-x-3 text-sm">
             <p class="min-w-[150px] max-w-[200px] text-gray-500">
-              {{ invoice?.seller?.sellerAddress }}
+              {{ invoice.seller.sellerAddress }}
             </p>
           </div>
 
           <div class="grid sm:flex gap-x-3 text-sm">
             <p class="min-w-[150px] max-w-[200px] text-gray-500">
-              {{ invoice?.seller?.sellerPhone }}
+              {{ invoice.seller.sellerPhone }}
             </p>
           </div>
 
           <div class="grid sm:flex gap-x-3 text-sm">
             <p class="min-w-[150px] max-w-[200px] text-gray-500">
-              {{ invoice?.seller?.sellerEmail }}
+              {{ invoice.seller.sellerEmail }}
             </p>
           </div>
         </div>
@@ -122,25 +103,25 @@
 
           <div class="grid sm:flex gap-x-3 text-sm">
             <p class="min-w-[150px] max-w-[200px] text-gray-500">
-              {{ invoice?.buyer?.buyerName }}
+              {{ invoice.buyer.buyerName }}
             </p>
           </div>
 
           <div class="grid sm:flex gap-x-3 text-sm">
             <p class="min-w-[150px] max-w-[200px] text-gray-500">
-              {{ invoice?.buyer?.buyerAddress }}
+              {{ invoice.buyer.buyerAddress }}
             </p>
           </div>
 
           <div class="grid sm:flex gap-x-3 text-sm">
             <p class="min-w-[150px] max-w-[200px] text-gray-500">
-              {{ invoice?.buyer?.buyerPhone }}
+              {{ invoice.buyer.buyerPhone }}
             </p>
           </div>
 
           <div class="grid sm:flex gap-x-3 text-sm">
             <p class="min-w-[150px] max-w-[200px] text-gray-500">
-              {{ invoice?.buyer?.buyerEmail }}
+              {{ invoice.buyer.buyerEmail }}
             </p>
           </div>
         </div>
@@ -154,7 +135,7 @@
               Invoice number:
             </dt>
             <dd class="font-medium text-gray-500">
-              {{ invoice?.invoiceNumber }}
+              {{ invoice.invoiceNumber }}
             </dd>
           </dl>
 
@@ -163,7 +144,7 @@
               Invoice Date:
             </dt>
             <dd class="font-medium text-gray-500">
-              {{ invoice?.invoiceDate }}
+              {{ invoice.invoiceDate }}
             </dd>
           </dl>
 
@@ -172,7 +153,7 @@
               Payment Due
             </dt>
             <dd class="font-medium text-gray-500">
-              {{ invoice?.invoiceDueDate }}
+              {{ invoice.invoiceDueDate }}
             </dd>
           </dl>
         </div>
@@ -183,7 +164,7 @@
 
     <!-- Table -->
     <div class="mt-6 border border-gray-200 p-4 rounded-lg space-y-4">
-      <div class="hidden sm:grid sm:grid-cols-5">
+      <th class="hidden sm:grid sm:grid-cols-5">
         <div class="sm:col-span-2 text-xs font-medium text-gray-500 uppercase">
           Item
         </div>
@@ -196,7 +177,7 @@
         <div class="text-right text-xs font-medium text-gray-500 uppercase">
           Amount
         </div>
-      </div>
+      </th>
 
       <div
         class="hidden sm:block border-b border-gray-200 dark:border-gray-700"
@@ -222,13 +203,13 @@
           <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">
             Rate
           </h5>
-          <p class="text-gray-800">{{ item.unitPrice }}</p>
+          <p class="text-gray-800">{{ item.unitPrice | currency }}</p>
         </div>
         <div>
           <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase">
             Amount
           </h5>
-          <p class="sm:text-right text-gray-800">{{ item.amount }}</p>
+          <p class="sm:text-right text-gray-800">{{ item.amount | currency }}</p>
         </div>
       </div>
 
@@ -244,35 +225,35 @@
           <dl class="grid sm:grid-cols-5 gap-x-3 text-sm">
             <dt class="col-span-3 text-gray-500">SubTotal:</dt>
             <dd class="col-span-2 font-medium text-gray-800">
-              {{ invoice?.subTotal }}
+              {{ invoice.subTotal | currency }}
             </dd>
           </dl>
 
           <dl class="grid sm:grid-cols-5 gap-x-3 text-sm">
             <dt class="col-span-3 text-gray-500">Tax:</dt>
             <dd class="col-span-2 font-medium text-gray-800">
-              {{ invoice?.taxRate }}
+              {{ invoice.taxRate ? invoice.taxRate : 0 | currency}}
             </dd>
           </dl>
 
           <dl class="grid sm:grid-cols-5 gap-x-3 text-sm">
             <dt class="col-span-3 text-gray-500">Discounts:</dt>
             <dd class="col-span-2 font-medium text-gray-800">
-              {{ invoice?.discountRate }}
+              {{ invoice.discountRate ? invoice.discountRate : 0 | currency}}
             </dd>
           </dl>
 
           <dl class="grid sm:grid-cols-5 gap-x-3 text-sm">
             <dt class="col-span-3 text-gray-500">Fees:</dt>
             <dd class="col-span-2 font-medium text-gray-800">
-              {{ invoice?.fees }}
+              {{ invoice.fees ? invoice.fees : 0 | currency}}
             </dd>
           </dl>
 
           <dl class="grid sm:grid-cols-5 gap-x-3 text-sm">
             <dt class="col-span-3 text-gray-500">TOTAL:</dt>
             <dd class="col-span-2 font-medium text-gray-800">
-              {{ invoice?.total }}
+              {{ invoice.total | currency}}
             </dd>
           </dl>
         </div>
@@ -280,6 +261,7 @@
       </div>
     </div>
     <!-- End Flex -->
+   </div>
 
     <footer>
       <h2 class="text-gray-500">Terms and Conditions</h2>

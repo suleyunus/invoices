@@ -5,12 +5,14 @@ import { CreateInvoiceComponent } from './containers/create-invoice/create-invoi
 import { ReactiveFormsModule } from '@angular/forms';
 import { errorTailorImports } from '@ngneat/error-tailor';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [InvoiceComponent, CreateInvoiceComponent],
   imports: [
     CommonModule,
     RouterModule,
+    HttpClientModule,
     ReactiveFormsModule,
     errorTailorImports,
   ],

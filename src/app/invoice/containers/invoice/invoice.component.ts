@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { InvoiceService } from '../../services/invoice.service';
 import { Invoice } from '../../interfaces/invoice';
+import * as pdfMake from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import { HttpClient } from '@angular/common/http';
+import htmlToPdfmake from 'html-to-pdfmake';
+
+(<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-invoice',
@@ -12,32 +18,37 @@ export class InvoiceComponent implements OnInit {
   subtotal: number | undefined;
   total: number | undefined;
 
-  constructor(private invoiceService: InvoiceService) {}
+  constructor(
+    private invoiceService: InvoiceService,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
     this.fetchInvoice();
   }
 
   fetchInvoice(): void {
-    this.invoiceService.getInvoice().subscribe(
-      (invoice: Invoice | undefined) => {
+    this.invoiceService.getInvoice().subscribe({
+      next: (invoice: Invoice | undefined) => {
         this.invoice = invoice;
       },
-      (error: any) => {
-        console.error('Error fetching invoice', error);
-      }
-    );
+      error(err) {
+        console.error('Error fetching invoice', err);
+      },
+    });
   }
 
-  calculateSubtotal(): void {
-    if (this.invoice) {
-      this.subtotal = this.invoiceService.calculateSubtotal();
-    }
+  extractHTMLContent(): string {
+    const htmlElement = document.getElementById('invoice');
+    const htmlContent = htmlElement?.innerHTML ?? '';
+    return htmlContent;
   }
 
-  calculateTotal(): void {
-    if (this.invoice) {
-      this.total = this.invoiceService.calculateTotal();
-    }
+  generatePDF(): void {
+    const htmlContent = this.extractHTMLContent();
+    const val = htmlToPdfmake(htmlContent);
+    var documentDefinition = { content: val };
+
+    pdfMake.createPdf(documentDefinition).open();
   }
 }
