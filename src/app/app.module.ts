@@ -4,10 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InvoiceModule } from './invoice/invoice.module';
-import {
-  errorTailorImports,
-  provideErrorTailorConfig,
-} from '@ngneat/error-tailor';
+import { provideErrorTailorConfig } from '@ngneat/error-tailor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,9 +15,9 @@ import {
         useFactory() {
           return {
             required: 'This field is required',
-            minlength: ({ requiredLength, actualLength }) =>
+            minLength: ({ requiredLength, actualLength }) =>
               `Expect ${requiredLength} but got ${actualLength}`,
-            invalidAddress: (error) => `Address not valid`,
+            email: (error) => `Email not valid`,
           };
         },
         deps: [],
