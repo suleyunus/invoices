@@ -11,17 +11,14 @@ import htmlToPdfmake from 'html-to-pdfmake';
 @Component({
   selector: 'app-invoice',
   templateUrl: './invoice.component.html',
-  styleUrls: ['./invoice.component.css'],
+  styles: [],
 })
 export class InvoiceComponent implements OnInit {
   invoice: Invoice | undefined;
   subtotal: number | undefined;
   total: number | undefined;
 
-  constructor(
-    private invoiceService: InvoiceService,
-    private http: HttpClient
-  ) {}
+  constructor(private invoiceService: InvoiceService) {}
 
   ngOnInit(): void {
     this.fetchInvoice();
@@ -33,7 +30,7 @@ export class InvoiceComponent implements OnInit {
         this.invoice = invoice;
       },
       error(err) {
-        console.error('Error fetching invoice', err);
+        console.error(err);
       },
     });
   }
@@ -47,7 +44,7 @@ export class InvoiceComponent implements OnInit {
   generatePDF(): void {
     const htmlContent = this.extractHTMLContent();
     const val = htmlToPdfmake(htmlContent);
-    var documentDefinition = { content: val };
+    const documentDefinition = { content: val };
 
     pdfMake.createPdf(documentDefinition).open();
   }
